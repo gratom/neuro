@@ -4,17 +4,31 @@ using UnityEngine;
 
 namespace Global.Component.Perceptron
 {
-    public class Link
+    public interface ILink
+    {
+        float Koef { get; set; }
+        float PureValue { get; }
+        float KoefedValue { get; }
+    }
+
+    public class Link : ILink
     {
 #pragma warning disable
         [SerializeField] private float _value;
-        [SerializeField] private Neuron neuron;
 #pragma warning restore
 
-        public float Value
+        public Neuron neuron;
+
+        public Link(Neuron neuron)
+        {
+            this.neuron = neuron;
+        }
+
+        public float KoefedValue
         {
             get
             {
+                _value = neuron.Value;
                 return _value * Koef;
             }
             private set
@@ -25,16 +39,6 @@ namespace Global.Component.Perceptron
 
         public float Koef { get; set; }
 
-        #region public functions
-
-        public void RecalculateValue()
-        {
-            if (neuron != null)
-            {
-                _value = neuron.Value;
-            }
-        }
-
-        #endregion public functions
+        public float PureValue => _value;
     }
 }

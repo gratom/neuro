@@ -1,25 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Global.Component.Perceptron
 {
+    [System.Serializable]
     public class Neuron
     {
 #pragma warning disable
-        [SerializeField] private List<Link> links;
+        [SerializeField] private float _value;
 #pragma warning restore
 
-        public List<Link> Links { get => links; private set => links = value; }
+        public List<ILink> Links;
 
-        public float Value { get; private set; }
-
-        #region public functions
-
-        public void RecalculateValue()
+        public float Value
         {
+            get
+            {
+                RecalculateValue();
+                return _value;
+            }
         }
 
-        #endregion public functions
+        private void RecalculateValue()
+        {
+            _value = Links.Sum(x => x.KoefedValue);
+        }
     }
 }
