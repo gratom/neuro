@@ -14,6 +14,16 @@ namespace Global.Component.Perceptron
 
         public List<ILink> Links;
 
+        public Neuron(int layer, int index)
+        {
+            Layer = layer;
+            Index = index;
+        }
+
+        public int Layer { get; private set; }
+
+        public int Index { get; private set; }
+
         public float Value
         {
             get
