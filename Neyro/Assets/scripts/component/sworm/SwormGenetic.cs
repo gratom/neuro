@@ -13,5 +13,13 @@ namespace Global.Component.Organisms.Sworm
 #pragma warning restore
 
         public override BaseGenable Prefab => prefab.GetComponent<Sworm>();
+
+        protected override void ActionOnNewGeneration(ref BaseGenable genable)
+        {
+        }
+
+        protected override void ActionOnSpawn(ref BaseGenable genable)
+        {
+        }
     }
 }

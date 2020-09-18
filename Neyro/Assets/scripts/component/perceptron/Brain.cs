@@ -61,12 +61,27 @@ namespace Global.Component.Perceptron
                 {
                     for (int k = 0; k < layers[i].neurons[j].Links.Count; k++)
                     {
-                        layers[i].neurons[j].Links[k].Koef = Random.Range(0f, 1f);
+                        layers[i].neurons[j].Links[k].Koef = Random.Range(-1f, 1f);
                     }
-                    float sum = layers[i].neurons[j].Links.Sum(x => x.Koef);
+                    //normalization
+                    //float sum = layers[i].neurons[j].Links.Sum(x => x.Koef);
+                    //for (int k = 0; k < layers[i].neurons[j].Links.Count; k++)
+                    //{
+                    //    layers[i].neurons[j].Links[k].Koef /= sum;
+                    //}
+                }
+            }
+        }
+
+        public void MutateFrom(Brain otherBrain, float value)
+        {
+            for (int i = 0; i < layers.Count; i++)
+            {
+                for (int j = 0; j < layers[i].neurons.Count; j++)
+                {
                     for (int k = 0; k < layers[i].neurons[j].Links.Count; k++)
                     {
-                        layers[i].neurons[j].Links[k].Koef /= sum;
+                        layers[i].neurons[j].Links[k].Koef = otherBrain.Layers[i].neurons[j].Links[k].Koef + Random.Range(-value, value);
                     }
                 }
             }

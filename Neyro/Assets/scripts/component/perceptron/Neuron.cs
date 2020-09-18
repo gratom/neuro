@@ -10,6 +10,7 @@ namespace Global.Component.Perceptron
     {
 #pragma warning disable
         [SerializeField] private float _value;
+        [SerializeField] private float multiplicator;
 #pragma warning restore
 
         public List<ILink> Links;
@@ -20,6 +21,8 @@ namespace Global.Component.Perceptron
             Index = index;
         }
 
+        public float Multiplicator { get => multiplicator; set => multiplicator = value; }
+
         public int Layer { get; private set; }
 
         public int Index { get; private set; }
@@ -28,14 +31,14 @@ namespace Global.Component.Perceptron
         {
             get
             {
-                RecalculateValue();
                 return _value;
             }
         }
 
-        private void RecalculateValue()
+        public void RecalculateValue()
         {
-            _value = Links.Sum(x => x.KoefedValue);
+            float y = Links.Sum(x => x.KoefedValue);
+            _value = Mathf.Pow(1 + Mathf.Exp(-y * Multiplicator), -1);
         }
     }
 }

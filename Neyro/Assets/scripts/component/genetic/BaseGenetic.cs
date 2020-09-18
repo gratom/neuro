@@ -17,13 +17,20 @@ namespace Global.Component.Genetic
 
         protected bool isSimulated = true;
 
+        protected Coroutine geneticCoroutine;
+
         #region Unity functions
 
         private void Start()
         {
-            //создать первое поколение
+            for (int i = 0; i < Settings.PopulationCount; i++)
+            {
+                BaseGenable genable = Instantiate(Prefab, transform);
+                GenableList.Add(genable);
+                ActionOnSpawn(ref genable);
+            }
 
-            //запустить корутину
+            geneticCoroutine = StartCoroutine(GeneticCoroutine());
         }
 
         #endregion Unity functions
@@ -42,22 +49,37 @@ namespace Global.Component.Genetic
 
         #endregion public functions
 
+        #region abstract functions
+
+        protected abstract void ActionOnSpawn(ref BaseGenable genable);
+
+        protected abstract void ActionOnNewGeneration(ref BaseGenable genable);
+
+        #endregion abstract functions
+
         #region private functions
 
         private IEnumerator GeneticCoroutine()
         {
+            float timeStart = Time.time;
             while (true)
             {
                 yield return new WaitForSeconds(Settings.PopulationTime);
                 if (isSimulated)
                 {
-                    //отсеять лучших
-
-                    //сделать поколение на их основе
+                    GenableList.Sort((x, y) => { return (int)(x.Value - y.Value); });
+                    for (int i = Settings.SampleCount; i < GenableList.Count; i++)
+                    {
+                        GenableList[i].Brain.MutateFrom(GenableList[Random.Range(0, Settings.SampleCount)].Brain, Settings.MutationValue.Evaluate(Time.time - timeStart));
+                    }
+                    for (int i = 0; i < GenableList.Count; i++)
+                    {
+                        BaseGenable genable = GenableList[i];
+                        ActionOnNewGeneration(ref genable);
+                    }
                 }
                 else
                 {
-                    //stop?
                 }
             }
         }
@@ -72,6 +94,7 @@ namespace Global.Component.Genetic
         [SerializeField] private int populationCount;
         [SerializeField] private int populationTime;
         [SerializeField, Range(1f, 100f)] private float sampleFromPopulationPercent;
+        [SerializeField] private AnimationCurve mutationValue;
 #pragma warning restore
 
         public int PopulationCount => populationCount;
@@ -79,5 +102,6 @@ namespace Global.Component.Genetic
         public float SampleFromPopulationPercent => sampleFromPopulationPercent;
         public float SampleFromPopulation => sampleFromPopulationPercent / 100f;
         public int SampleCount => Mathf.Clamp((int)(PopulationCount * SampleFromPopulation), 1, PopulationCount);
+        public AnimationCurve MutationValue => mutationValue;
     }
 }

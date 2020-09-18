@@ -7,5 +7,7 @@ namespace Global.Component.Genetic
     public abstract class BaseGenable : MonoBehaviour
     {
         public abstract float Value { get; }
+
+        public Perceptron.Brain Brain { get; }
     }
 }
