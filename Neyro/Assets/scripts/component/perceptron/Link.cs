@@ -17,10 +17,6 @@ namespace Global.Component.Perceptron
 
     public class Link : ILink
     {
-#pragma warning disable
-        [SerializeField] private float _value;
-#pragma warning restore
-
         public Neuron neuron;
 
         public Neuron ownNeuron;
@@ -35,18 +31,19 @@ namespace Global.Component.Perceptron
         {
             get
             {
-                _value = neuron.Value;
-                return _value * Koef;
-            }
-            private set
-            {
-                _value = value;
+                return neuron.Value * Koef;
             }
         }
 
         public float Koef { get; set; }
 
-        public float PureValue => _value;
+        public float PureValue
+        {
+            get
+            {
+                return neuron.Value;
+            }
+        }
 
         public int NeuronInLayer => neuron.Layer;
 

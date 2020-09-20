@@ -7,13 +7,14 @@ namespace Global.Component.Perceptron
     using System.Linq;
     using Tools;
 
-    [Assert]
+    //[Assert]
     public class Brain : MonoBehaviour
     {
 #pragma warning disable
 
         [SerializeField] private List<Layer> layers;
         [SerializeField] private BrainSettings brainSettings;
+        [SerializeField] private List<NervClot> clots;
         [SerializeField] private Visualizer visualizer;
 
 #pragma warning restore
@@ -22,19 +23,33 @@ namespace Global.Component.Perceptron
 
         public List<Layer> Layers => layers;
 
-        private void Start()
-        {
-            CreateNewBrain();
-            SetRandom();
-            visualizer?.Init(this);
-        }
+        //private void Start()
+        //{
+        //    CreateNewBrain();
+        //    SetRandom();
+        //    visualizer?.Init(this);
+        //}
 
         #region public functions
 
         public void CreateNewBrain()
         {
             layers = new List<Layer>();
-            for (int i = 0; i < BrainSettings.Layers.Length; i++)
+
+            //add base layer for nervs
+            layers.Add(new Layer());
+            layers[0].neurons = new List<Neuron>();
+            int neuronCounter = 0;
+            for (int i = 0; i < clots.Count; i++)
+            {
+                for (int j = 0; j < clots[i].Links.Count; j++, neuronCounter++)
+                {
+                    layers[0].neurons.Add(new Neuron(0, neuronCounter));
+                    layers[0].neurons[neuronCounter].Links = new List<ILink>() { clots[i].Links[j] };
+                }
+            }
+
+            for (int i = 1; i < BrainSettings.Layers.Length; i++)
             {
                 layers.Add(new Layer());
                 layers[i].neurons = new List<Neuron>();
@@ -42,12 +57,10 @@ namespace Global.Component.Perceptron
                 {
                     layers[i].neurons.Add(new Neuron(i, j));
                     layers[i].neurons[j].Links = new List<ILink>();
-                    if (i > 0)
+
+                    for (int k = 0; k < layers[i - 1].neurons.Count; k++)
                     {
-                        for (int k = 0; k < layers[i - 1].neurons.Count; k++)
-                        {
-                            layers[i].neurons[j].Links.Add(new Link(layers[i - 1].neurons[k], layers[i].neurons[j]));
-                        }
+                        layers[i].neurons[j].Links.Add(new Link(layers[i - 1].neurons[k], layers[i].neurons[j]));
                     }
                 }
             }
@@ -81,8 +94,19 @@ namespace Global.Component.Perceptron
                 {
                     for (int k = 0; k < layers[i].neurons[j].Links.Count; k++)
                     {
-                        layers[i].neurons[j].Links[k].Koef = otherBrain.Layers[i].neurons[j].Links[k].Koef + Random.Range(-value, value);
+                        layers[i].neurons[j].Links[k].Koef = otherBrain.layers[i].neurons[j].Links[k].Koef + Random.Range(-value, value);
                     }
+                }
+            }
+        }
+
+        public void RecalculateValues()
+        {
+            for (int i = 0; i < layers.Count; i++)
+            {
+                for (int j = 0; j < layers[i].neurons.Count; j++)
+                {
+                    layers[i].neurons[j].RecalculateValue();
                 }
             }
         }

@@ -10,7 +10,7 @@ namespace Global.Component.Perceptron
     {
 #pragma warning disable
         [SerializeField] private float _value;
-        [SerializeField] private float multiplicator;
+        [SerializeField] private float multiplicator = 10;
 #pragma warning restore
 
         public List<ILink> Links;
@@ -38,7 +38,8 @@ namespace Global.Component.Perceptron
         public void RecalculateValue()
         {
             float y = Links.Sum(x => x.KoefedValue);
-            _value = Mathf.Pow(1 + Mathf.Exp(-y * Multiplicator), -1);
+            //_value = Mathf.Pow(1 + Mathf.Exp(-y * Multiplicator), -1); // вариант с [0, 1]
+            _value = Mathf.Pow(1 + Mathf.Exp(-y * Multiplicator), -1) * 2 - 1; //вариант с [-1, 1]
         }
     }
 }

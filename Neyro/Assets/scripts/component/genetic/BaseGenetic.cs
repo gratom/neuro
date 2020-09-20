@@ -27,7 +27,7 @@ namespace Global.Component.Genetic
             {
                 BaseGenable genable = Instantiate(Prefab, transform);
                 GenableList.Add(genable);
-                ActionOnSpawn(ref genable);
+                ActionOnSpawn(ref genable, i);
             }
 
             geneticCoroutine = StartCoroutine(GeneticCoroutine());
@@ -51,9 +51,9 @@ namespace Global.Component.Genetic
 
         #region abstract functions
 
-        protected abstract void ActionOnSpawn(ref BaseGenable genable);
+        protected abstract void ActionOnSpawn(ref BaseGenable genable, int index);
 
-        protected abstract void ActionOnNewGeneration(ref BaseGenable genable);
+        protected abstract void ActionOnNewGeneration(ref BaseGenable genable, int index);
 
         #endregion abstract functions
 
@@ -67,7 +67,10 @@ namespace Global.Component.Genetic
                 yield return new WaitForSeconds(Settings.PopulationTime);
                 if (isSimulated)
                 {
-                    GenableList.Sort((x, y) => { return (int)(x.Value - y.Value); });
+                    GenableList.Sort((x, y) => { return (int)(y.Value - x.Value); });
+
+                    Debug.Log("Best:" + GenableList[0].Value);
+
                     for (int i = Settings.SampleCount; i < GenableList.Count; i++)
                     {
                         GenableList[i].Brain.MutateFrom(GenableList[Random.Range(0, Settings.SampleCount)].Brain, Settings.MutationValue.Evaluate(Time.time - timeStart));
@@ -75,7 +78,7 @@ namespace Global.Component.Genetic
                     for (int i = 0; i < GenableList.Count; i++)
                     {
                         BaseGenable genable = GenableList[i];
-                        ActionOnNewGeneration(ref genable);
+                        ActionOnNewGeneration(ref genable, i);
                     }
                 }
                 else

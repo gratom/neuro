@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Global.Component.Perceptron
 {
-    public abstract class Muscule : MonoBehaviour
+    public abstract class NervClot : MonoBehaviour
     {
-        public abstract void Make(float value);
+        public abstract List<ILink> Links { get; }
     }
 }

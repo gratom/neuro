@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Global.Component.Perceptron;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Global.Component.Genetic
     {
         public abstract float Value { get; }
 
-        public Perceptron.Brain Brain { get; }
+        public abstract Perceptron.Brain Brain { get; }
+
+        public abstract void Refresh();
     }
 }
