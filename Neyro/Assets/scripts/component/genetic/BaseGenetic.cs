@@ -67,6 +67,7 @@ namespace Global.Component.Genetic
                 yield return new WaitForSeconds(Settings.PopulationTime);
                 if (isSimulated)
                 {
+                    Time.timeScale = 0;
                     GenableList.Sort((x, y) => { return (int)(y.Value - x.Value); });
 
                     Debug.Log("Best:" + GenableList[0].Value);
@@ -80,6 +81,8 @@ namespace Global.Component.Genetic
                         BaseGenable genable = GenableList[i];
                         ActionOnNewGeneration(ref genable, i);
                     }
+                    yield return new WaitForSecondsRealtime(1);
+                    Time.timeScale = 1;
                 }
                 else
                 {

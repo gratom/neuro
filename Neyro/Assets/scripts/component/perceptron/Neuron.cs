@@ -10,7 +10,7 @@ namespace Global.Component.Perceptron
     {
 #pragma warning disable
         [SerializeField] private float _value;
-        [SerializeField] private float multiplicator = 10;
+        [SerializeField] private float multiplicator = 5f;
 #pragma warning restore
 
         public List<ILink> Links;

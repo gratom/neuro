@@ -2312,23 +2312,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     populationCount: 200
-    populationTime: 5
-    sampleFromPopulationPercent: 10
+    populationTime: 30
+    sampleFromPopulationPercent: 50
     mutationValue:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.4
-        inSlope: -0.0002579558
-        outSlope: -0.0002579558
+        time: 24.406775
+        value: 0.15231791
+        inSlope: -0.0000337508
+        outSlope: -0.0000337508
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.039016087
+        outWeight: 0.1694915
       - serializedVersion: 3
-        time: 3600
-        value: 0.1
+        time: 3499.322
+        value: 0.015945883
         inSlope: -0.000016626884
         outSlope: -0.000016626884
         tangentMode: 0

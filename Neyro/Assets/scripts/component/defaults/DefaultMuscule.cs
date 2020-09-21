@@ -9,13 +9,27 @@ namespace Global.Component.Defaults
     public class DefaultMuscule : Muscule
     {
 #pragma warning disable
-        [SerializeField] private new Rigidbody rigidbody;
+        [SerializeField] private new HingeJoint joint;
         [SerializeField] private float multiplicator;
 #pragma warning restore
 
+        private JointSpring spring = new JointSpring();
+
+        private void Awake()
+        {
+            if (joint != null)
+            {
+                spring = joint.spring;
+            }
+        }
+
         public override void Make(float value)
         {
-            rigidbody.AddRelativeTorque(new Vector3(value * multiplicator, 0, 0));
+            if (joint != null)
+            {
+                spring.targetPosition = value * multiplicator;
+                joint.spring = spring;
+            }
         }
     }
 }

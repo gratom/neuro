@@ -171,10 +171,10 @@ HingeJoint:
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 1.4210855e-14, y: 0, z: 0.5000001}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 50
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b96ae36bb105fb4dae77a11e305ccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 774204187083086613}
-  multiplicator: 1000000
+  joint: {fileID: 774204187083086618}
+  multiplicator: 45
 --- !u!114 &774204187083086608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 774204187083086613}
-  trackVelocity: 0
+  trackVelocity: 1
   trackAngularVelocity: 1
 --- !u!1 &774204187139493674
 GameObject:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layers: []
   brainSettings:
-    Layers: 140000000a00000006000000
+    Layers: 140000000a00000005000000
   clots:
   - {fileID: 774204187724161778}
   - {fileID: 774204187083086608}
@@ -304,12 +304,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brain: {fileID: 774204187139493671}
   muscules:
-  - {fileID: 774204187724161779}
   - {fileID: 774204187083086609}
   - {fileID: 774204187951305958}
   - {fileID: 774204188037627813}
   - {fileID: 5227942265662243781}
   - {fileID: 3103293051206436315}
+  - {fileID: 7373507278894733995}
   lifeCicleTime: 0.1
 --- !u!1 &774204187724161781
 GameObject:
@@ -324,8 +324,8 @@ GameObject:
   - component: {fileID: 774204187724161782}
   - component: {fileID: 774204187724161783}
   - component: {fileID: 774204187724161780}
-  - component: {fileID: 774204187724161779}
   - component: {fileID: 774204187724161778}
+  - component: {fileID: 7373507278894733995}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -424,20 +424,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &774204187724161779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774204187724161781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b96ae36bb105fb4dae77a11e305ccb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbody: {fileID: 774204187724161780}
-  multiplicator: 1000000
 --- !u!114 &774204187724161778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,8 +437,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 774204187724161780}
-  trackVelocity: 0
+  trackVelocity: 1
   trackAngularVelocity: 1
+--- !u!114 &7373507278894733995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774204187724161781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b96ae36bb105fb4dae77a11e305ccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joint: {fileID: 0}
+  multiplicator: 0
 --- !u!1 &774204187951305961
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,15 +579,15 @@ HingeJoint:
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 5.684342e-14, y: 0, z: 0.5000005}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 50
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
     targetVelocity: 0
-    force: 0
+    force: 20
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
@@ -614,8 +614,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b96ae36bb105fb4dae77a11e305ccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 774204187951305960}
-  multiplicator: 1000000
+  joint: {fileID: 774204187951305963}
+  multiplicator: 45
 --- !u!114 &774204187951305953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 774204187951305960}
-  trackVelocity: 0
+  trackVelocity: 1
   trackAngularVelocity: 1
 --- !u!1 &774204188037627820
 GameObject:
@@ -757,15 +757,15 @@ HingeJoint:
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 5.684342e-14, y: 0, z: 0.5000005}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 50
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
     targetVelocity: 0
-    force: 0
+    force: 20
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
@@ -792,8 +792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b96ae36bb105fb4dae77a11e305ccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 774204188037627817}
-  multiplicator: 1000000
+  joint: {fileID: 774204188037627822}
+  multiplicator: 45
 --- !u!114 &774204188037627812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 774204188037627817}
-  trackVelocity: 0
+  trackVelocity: 1
   trackAngularVelocity: 1
 --- !u!1 &999404134251432454
 GameObject:
@@ -980,15 +980,15 @@ HingeJoint:
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 1.1368684e-13, y: 0, z: 0.50000095}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 50
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
     targetVelocity: 0
-    force: 0
+    force: 20
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
@@ -1015,8 +1015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b96ae36bb105fb4dae77a11e305ccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 5233437429779065231}
-  multiplicator: 1000000
+  joint: {fileID: 5464940606874645171}
+  multiplicator: 45
 --- !u!114 &4782488849930873303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 5233437429779065231}
-  trackVelocity: 0
+  trackVelocity: 1
   trackAngularVelocity: 1
 --- !u!1 &3530750189062736721
 GameObject:
@@ -1203,15 +1203,15 @@ HingeJoint:
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 1.1368684e-13, y: 0, z: 0.50000095}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 50
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
     targetVelocity: 0
-    force: 0
+    force: 20
     freeSpin: 0
   m_UseLimits: 0
   m_Limits:
@@ -1238,8 +1238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b96ae36bb105fb4dae77a11e305ccb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 4011210815060854943}
-  multiplicator: 1000000
+  joint: {fileID: 8768771177401204270}
+  multiplicator: 45
 --- !u!114 &8187637940982372999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 4011210815060854943}
-  trackVelocity: 0
+  trackVelocity: 1
   trackAngularVelocity: 1
 --- !u!1 &4782376636542174267
 GameObject:

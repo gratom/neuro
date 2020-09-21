@@ -20,9 +20,11 @@ namespace Global.Component.Organisms.Sworm
         private List<Vector3> startPositions = new List<Vector3>();
         private List<Quaternion> startRotations = new List<Quaternion>();
 
-        public override float Value => muscules[muscules.Count - 1].transform.position.x;
+        public override float Value => muscules[muscules.Count - 1].transform.position.x - dopValue;
 
         public override Brain Brain => brain;
+
+        private float dopValue = 100;
 
         public void Start()
         {
@@ -42,11 +44,18 @@ namespace Global.Component.Organisms.Sworm
             {
                 muscules[i].transform.localPosition = startPositions[i];
                 muscules[i].transform.rotation = startRotations[i];
+                muscules[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                muscules[i].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             }
         }
 
         private void LifeCicle()
         {
+            float f = Vector2.Distance(muscules[muscules.Count - 1].transform.position, muscules[0].transform.position);
+            if (dopValue > f)
+            {
+                dopValue = f;
+            }
             brain.RecalculateValues();
             for (int i = 0; i < brain.Layers[brain.Layers.Count - 1].neurons.Count; i++)
             {
