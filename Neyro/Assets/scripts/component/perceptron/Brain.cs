@@ -100,6 +100,10 @@ namespace Global.Component.Perceptron
             }
         }
 
+        public void LoadFrom()
+        {
+        }
+
         public void RecalculateValues()
         {
             for (int i = 0; i < layers.Count; i++)
@@ -118,5 +122,10 @@ namespace Global.Component.Perceptron
     public class BrainSettings
     {
         public int[] Layers;
+    }
+
+    [System.Serializable]
+    public class SavedBrain
+    {
     }
 }

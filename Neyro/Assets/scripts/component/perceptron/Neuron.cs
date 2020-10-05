@@ -8,10 +8,27 @@ namespace Global.Component.Perceptron
     [System.Serializable]
     public class Neuron
     {
+        public enum ActivationFunction
+        {
+            sigmoidZeroOne,
+            sigmoidMinusOneOne
+        }
+
+        private delegate float ActivationFunctionDelegate(float sum, float multiplicator);
+
 #pragma warning disable
         [SerializeField] private float _value;
         [SerializeField] private float multiplicator = 5f;
+        [SerializeField] private ActivationFunction functionsType;
 #pragma warning restore
+
+        private Dictionary<ActivationFunction, ActivationFunctionDelegate> functionsDictionary = new Dictionary<ActivationFunction, ActivationFunctionDelegate>()
+        {
+            { ActivationFunction.sigmoidZeroOne, (sum,Multiplicator)=>{ return Mathf.Pow(1 + Mathf.Exp(-sum * Multiplicator), -1); }},
+            { ActivationFunction.sigmoidMinusOneOne, (sum,Multiplicator)=>{ return Mathf.Pow(1 + Mathf.Exp(-sum * Multiplicator), -1) * 2 - 1; }}
+        };
+
+        private ActivationFunctionDelegate currentFunction;
 
         public List<ILink> Links;
 
@@ -37,9 +54,9 @@ namespace Global.Component.Perceptron
 
         public void RecalculateValue()
         {
-            float y = Links.Sum(x => x.KoefedValue);
+            float sum = Links.Sum(x => x.KoefedValue);
             //_value = Mathf.Pow(1 + Mathf.Exp(-y * Multiplicator), -1); // вариант с [0, 1]
-            _value = Mathf.Pow(1 + Mathf.Exp(-y * Multiplicator), -1) * 2 - 1; //вариант с [-1, 1]
+            _value = currentFunction(sum, Multiplicator);
         }
     }
 }

@@ -121,71 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &113588503
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 113588504}
-  - component: {fileID: 113588505}
-  - component: {fileID: 113588506}
-  m_Layer: 0
-  m_Name: TestBrain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &113588504
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113588503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &113588505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113588503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 834a5f812dcc2eb4f8514a6dd8d702b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layers: []
-  brainSettings:
-    Layers: 0500000005000000040000000300000005000000
-  clots: []
-  visualizer: {fileID: 113588506}
---- !u!114 &113588506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113588503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32957cee553155f42b9f8dd525a70201, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateTime: 1
-  defaultLinkWidth: 0.1
-  MaterialNeuron: {fileID: 2100000, guid: c48ee2ad1f825d248a30596dda9f2ed7, type: 2}
-  MaterialLink: {fileID: 2100000, guid: 19abdc66cbea74c4297d061021cacf5a, type: 2}
 --- !u!1 &508181078
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +306,7 @@ Transform:
   m_Children:
   - {fileID: 1364006619}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -581,7 +516,7 @@ MonoBehaviour:
   settings:
     populationCount: 200
     populationTime: 20
-    sampleFromPopulationPercent: 20
+    sampleFromPopulationPercent: 50
     mutationValue:
       serializedVersion: 2
       m_Curve:
@@ -606,8 +541,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  prefab: {fileID: 3357763480549928333, guid: fb56fa36d2e35aa408309e9f9bc3b89e, type: 3}
-  distance: 10
+  prefab: {fileID: 6638055671120213004, guid: 4a4dd1a9557ba12468dbc59d781ec701, type: 3}
+  distance: 5
 --- !u!4 &2109269947
 Transform:
   m_ObjectHideFlags: 0
@@ -620,5 +555,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
